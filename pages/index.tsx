@@ -63,10 +63,6 @@ export default function Home() {
       <Header />
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Doggypedia
-        </h1>
-
         <div className={styles.alphabetContainer}>
           {
             alphabetArray.map((letter, index) => (

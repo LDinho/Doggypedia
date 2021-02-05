@@ -55,6 +55,14 @@
   width: 100%;
 }
 
+@media (max-width: 767px) {
+  .alphabetContainer {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    justify-items: center;
+  }
+}
+
 .alphabetContainer a:hover {
   text-decoration: underline;
 
@@ -95,7 +103,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: none;
-    gap: 10px;
     grid-template-areas: none;
     margin-top: 20px;
   }
@@ -106,8 +113,8 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: none;
-    gap: 10px;
     grid-template-areas: none;
+    justify-items: center;
     margin-top: 20px;
   }
 }

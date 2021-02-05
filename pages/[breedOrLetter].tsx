@@ -55,14 +55,10 @@ export default function BreedOrLetter() {
                 <Header />
 
                 <main className={styles.main}>
-                    <h1 className={styles.title}>
-                        Doggypedia
-                    </h1>
-
                     <div className={styles.alphabetContainer}>
                         {
                             alphabetArray.map((letter, index) => (
-                                <a href={`/${letter}`} key={index}>
+                                <a className={styles.alphabetLink} href={`/${letter}`} key={index}>
                                     {letter.toUpperCase()}
                                 </a>
                             ))
