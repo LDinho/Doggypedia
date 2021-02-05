@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Image from 'next/image';
 
@@ -78,23 +79,33 @@ export default function Home() {
 
         <section className={styles.imageGalleryContainer}>
           {
-            dogs.map((dog, index) => {
+            dogs.map((dogUrl, index) => {
 
-              const subBreedAndBreedName = dog.split('breeds')[1].split('/')[1].replace('-', " ")
+              const subBreedAndBreedName = dogUrl.split('breeds')[1].split('/')[1].replace('-', " ")
                   .split(" ").reverse().map(word => word[0].toUpperCase() + word.slice(1))
                   .join(" ").split(" ").join(' ');
 
+              const subBreedAndBreedNameArray = subBreedAndBreedName.split(' ');
+
+              // get url path to /breed  or /breed/subbreed for <Link href>
+              const urlPath = subBreedAndBreedNameArray.length === 2 ?
+                  `/${subBreedAndBreedNameArray[1].toLowerCase()}/${subBreedAndBreedNameArray[0].toLowerCase()}` : `/${subBreedAndBreedNameArray[0].toLowerCase()}`;
+
               return (
-                <div className={styles.imageWrapper} key={index}>
-                  <Image
-                      className={styles.galleryItem}
-                      src={dog}
-                      alt={`${subBreedAndBreedName} photo`}
-                      width={500}
-                      height={500}
-                  />
-                  <h2>{subBreedAndBreedName}</h2>
-                </div>
+                <Link href={urlPath} key={index}>
+                  <a>
+                    <div className={styles.imageWrapper}>
+                      <Image
+                          className={styles.galleryItem}
+                          src={dogUrl}
+                          alt={`${subBreedAndBreedName} photo`}
+                          width={500}
+                          height={500}
+                      />
+                      <h2>{subBreedAndBreedName}</h2>
+                    </div>
+                  </a>
+                </Link>
             )})
           }
         </section>

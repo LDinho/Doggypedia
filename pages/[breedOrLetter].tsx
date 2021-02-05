@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../components/Header';
 import Breed from '../components/Breed';
-import Image from 'next/image';
 import styles from "../styles/Home.module.css";
 
 const allBreedsUrl = `https://dog.ceo/api/breeds/list/all`;
@@ -25,7 +24,7 @@ export default function BreedOrLetter() {
         async function fetchBreeds() {
             try {
                 const res = await fetch(allBreedsUrl);
-                // getting all breed images
+                // getting all breeds
                 const data  = await res.json();
                 const allBreeds = data.message;
                 console.log('allBreeds', allBreeds);

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import Image from "next/image";
@@ -60,8 +59,8 @@ export default function Breed({ breed }) {
                             .replace('-', " ").split(" ")[1];
                         const subBreedFormattedName = subBreedName ? subBreedName[0].toUpperCase() + subBreedName.slice(1) : '';
                         return (
-                            <MaybeLink breed={breed} subBreedFormattedName={subBreedFormattedName}>
-                                <div className={styles.imageWrapper} key={index}>
+                            <MaybeLink breed={breed} subBreedFormattedName={subBreedFormattedName} key={index}>
+                                <div className={styles.imageWrapper} >
                                     <Image
                                         className={styles.galleryItem}
                                         src={imageUrl}

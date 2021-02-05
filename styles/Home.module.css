@@ -30,6 +30,12 @@
   color: #272727;
 }
 
+.subBreedTitle {
+  margin-top: 140px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
 .main {
   padding: 5rem 0;
   flex: 1;
