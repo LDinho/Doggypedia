@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) web app project.
+This is a Next.js web app project. You can [view it here](https://doggypedia.vercel.app/).
 
 <br>
 
@@ -12,10 +12,3 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-<br>
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
