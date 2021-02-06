@@ -119,6 +119,48 @@
   }
 }
 
+.hr {
+  width: 100%;
+  border-top: 1px solid #27272724;
+}
+
+.buttonWrapper {
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.button {
+  background: #272727;
+  color: white;
+  margin-top: 50px;
+  height: 32px;
+  width: 120px;
+  font: inherit;
+  padding: unset;
+  border-width: unset;
+  border-style: unset;
+  border-image: unset;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+/* create effect of button pressed */
+.button:active {
+  outline-width: 3px;
+  box-shadow: 1px 1px 3px 1px black;
+}
+
+.button:hover {
+  background: gray;
+}
+
+.button:focus {
+/*outline: #b2b1d0 auto 2px;*/
+  outline: none;
+  /*box-shadow: 1px 1px 7px 1px black;*/
+}
+
 
 .footer {
   width: 100%;

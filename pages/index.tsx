@@ -5,10 +5,12 @@ import Image from 'next/image';
 
 import styles from '../styles/Home.module.css';
 
-const url = `https://dog.ceo/api/breeds/image/random/20`;
+const url = `https://dog.ceo/api/breeds/image/random/50`;
 const allBreedsUrl = `https://dog.ceo/api/breeds/list/all`;
+const NUMOFIMAGESPERPAGE = 20;
 
 export default function Home() {
+  const [pageNumber, setPageNumber] = useState(1);
   const [breeds, setBreeds] = useState({});
   const [dogs, setDogs] = useState([]);
   const [alphabetArray, setAlphabetArray] = useState([]);
@@ -57,6 +59,16 @@ export default function Home() {
 
   },[])
 
+
+  const maxNumOfImages = NUMOFIMAGESPERPAGE * pageNumber;
+  const shouldShowButton = dogs.length > maxNumOfImages;
+
+  console.log('maxNumOfImages', maxNumOfImages);
+
+  const handleLoadMore = () => {
+    setPageNumber(prevState => prevState + 1);
+  }
+
   return (
 
     <div className={styles.container}>
@@ -74,8 +86,9 @@ export default function Home() {
         </div>
 
         <section className={styles.imageGalleryContainer}>
+
           {
-            dogs.map((dogUrl, index) => {
+            dogs.slice(0, maxNumOfImages).map((dogUrl, index) => {
 
               const subBreedAndBreedName = dogUrl.split('breeds')[1].split('/')[1].replace('-', " ")
                   .split(" ").reverse().map(word => word[0].toUpperCase() + word.slice(1))
@@ -105,6 +118,12 @@ export default function Home() {
             )})
           }
         </section>
+        {
+          shouldShowButton &&
+          (<button className={styles.button} onClick={handleLoadMore}>
+            Load More
+          </button>)
+        }
       </main>
 
       <footer className={styles.footer}>

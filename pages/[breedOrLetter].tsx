@@ -8,7 +8,7 @@ const allBreedsUrl = `https://dog.ceo/api/breeds/list/all`;
 
 export default function BreedOrLetter() {
     const router = useRouter();
-    const { breedOrLetter }= router.query;
+    const { breedOrLetter } = router.query;
 
     const isLetter = breedOrLetter && breedOrLetter.length === 1;
 
@@ -70,15 +70,14 @@ export default function BreedOrLetter() {
 
                             (<>
                                 {
-                                    filteredBreeds.map((breed, index) => <Breed breed={breed} key={index}/>)
+                                    filteredBreeds.map((breed, index) => <Breed breed={breed} key={index} showDivider={true}/>)
                                 }
                             </>)
 
                             :
 
-                            (<Breed breed={ breedOrLetter }/>)
+                            (<Breed breed={ breedOrLetter } />)
                     }
-
                 </main>
 
                 <footer className={styles.footer}>
