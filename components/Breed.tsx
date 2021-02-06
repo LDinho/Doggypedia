@@ -33,7 +33,6 @@ export default function Breed({ breed, showDivider=false }) {
                 // getting breed images
                 const data  = await res.json();
                 const images = data.message;
-                console.log('breedImages', images);
                 setBreedImages(images);
 
             } catch (err) {
@@ -50,8 +49,6 @@ export default function Breed({ breed, showDivider=false }) {
 
     const maxNumOfImages = NUMOFIMAGESPERPAGE * pageNumber;
     const shouldShowButton = breedImages.length > maxNumOfImages;
-
-    console.log('maxNumOfImages', maxNumOfImages);
 
     const handleLoadMore = () => {
         setPageNumber(prevState => prevState + 1);

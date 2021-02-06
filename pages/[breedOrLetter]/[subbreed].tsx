@@ -16,9 +16,6 @@ export default function SubBreed() {
     // because when we route to this path we'd use the breed name
     const { breedOrLetter:breed, subbreed } = router.query;
 
-    console.log('subbreed', subbreed);
-    console.log('breed', breed);
-
     useEffect(() => {
         async function fetchSubBreedImages() {
             const subBreedUrl = `https://dog.ceo/api/breed/${breed}/${subbreed}/images/random/100`;
@@ -27,7 +24,6 @@ export default function SubBreed() {
                 // getting subBreed images
                 const data  = await res.json();
                 const subBreedImages = data.message;
-                console.log('subBreed:', subBreedImages);
                 setSubBreeds(subBreedImages);
 
             } catch (err) {
@@ -47,8 +43,6 @@ export default function SubBreed() {
 
     const maxNumOfImages = NUMOFIMAGESPERPAGE * pageNumber;
     const shouldShowButton = subBreeds.length > maxNumOfImages;
-
-    console.log('maxNumOfImages', maxNumOfImages);
 
     const handleLoadMore = () => {
         setPageNumber(prevState => prevState + 1);

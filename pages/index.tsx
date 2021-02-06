@@ -37,7 +37,6 @@ export default function Home() {
         // getting all breed images
         const data  = await res.json();
         const allBreeds = data.message;
-        console.log('allBreeds', allBreeds);
         setBreeds(allBreeds);
 
         const alphabetArray = Object.keys(allBreeds).reduce((acc, breed) => {
@@ -62,8 +61,6 @@ export default function Home() {
 
   const maxNumOfImages = NUMOFIMAGESPERPAGE * pageNumber;
   const shouldShowButton = dogs.length > maxNumOfImages;
-
-  console.log('maxNumOfImages', maxNumOfImages);
 
   const handleLoadMore = () => {
     setPageNumber(prevState => prevState + 1);

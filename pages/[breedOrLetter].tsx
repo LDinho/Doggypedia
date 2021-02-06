@@ -12,13 +12,10 @@ export default function BreedOrLetter() {
 
     const isLetter = breedOrLetter && breedOrLetter.length === 1;
 
-    console.log('breedOrLetter', breedOrLetter);
-
     const [breeds, setBreeds] = useState({});
     const [alphabetArray, setAlphabetArray] = useState([]);
 
     const filteredBreeds = Object.keys(breeds).filter((breed) => breed[0] === breedOrLetter);
-    console.log('filteredBreeds:', filteredBreeds);
 
     useEffect(() => {
         async function fetchBreeds() {
@@ -27,7 +24,6 @@ export default function BreedOrLetter() {
                 // getting all breeds
                 const data  = await res.json();
                 const allBreeds = data.message;
-                console.log('allBreeds', allBreeds);
                 setBreeds(allBreeds);
 
                 const alphabetArray = Object.keys(allBreeds).reduce((acc, breed) => {
