@@ -13,7 +13,6 @@ export default function Home() {
   const [pageNumber, setPageNumber] = useState(1);
   const [breeds, setBreeds] = useState({});
   const [dogs, setDogs] = useState([]);
-  const [alphabetArray, setAlphabetArray] = useState([]);
 
   useEffect(() => {
     // Create a scoped async function in the hook
@@ -39,15 +38,6 @@ export default function Home() {
         const allBreeds = data.message;
         setBreeds(allBreeds);
 
-        const alphabetArray = Object.keys(allBreeds).reduce((acc, breed) => {
-          const firstLetter = breed[0];
-          if (acc.indexOf(firstLetter) === -1) {
-            return [...acc, firstLetter];
-          }
-          return acc;
-        }, []);
-        setAlphabetArray(alphabetArray);
-
       } catch (err) {
         console.error(err);
       }
@@ -58,6 +48,13 @@ export default function Home() {
 
   },[])
 
+  const alphabetArray = Object.keys(breeds).reduce((acc, breed) => {
+    const firstLetter = breed[0];
+    if (acc.indexOf(firstLetter) === -1) {
+      return [...acc, firstLetter];
+    }
+    return acc;
+  }, []);
 
   const maxNumOfImages = NUMOFIMAGESPERPAGE * pageNumber;
   const shouldShowButton = dogs.length > maxNumOfImages;
