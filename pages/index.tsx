@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
+import Search from "../components/Search";
 import Image from 'next/image';
 
 import styles from '../styles/Home.module.css';
@@ -56,6 +57,21 @@ export default function Home() {
     return acc;
   }, []);
 
+  const breedsArrayForSearch = Object.keys(breeds).reduce((acc, breed) => {
+    const subBreeds = breeds[breed];
+    const breedCapitalized = `${breed[0].toUpperCase()}${breed.slice(1)}`;
+
+    const hasSubBreeds = subBreeds.length > 0;
+
+    if (hasSubBreeds) {
+      const subBreedsPlusBreed = subBreeds.map((subBreed) => `${subBreed[0].toUpperCase()}${subBreed.slice(1)} ${breedCapitalized}`);
+     return [...acc, breedCapitalized, ...subBreedsPlusBreed]
+    }
+
+    return [...acc, breedCapitalized];   // acc.concat(breed)
+
+  }, []);
+
   const maxNumOfImages = NUMOFIMAGESPERPAGE * pageNumber;
   const shouldShowButton = dogs.length > maxNumOfImages;
 
@@ -67,6 +83,7 @@ export default function Home() {
 
     <div className={styles.container}>
       <Header />
+      <Search breedsArrayForSearch={breedsArrayForSearch} />
 
       <main className={styles.main}>
         <div className={styles.alphabetContainer}>
