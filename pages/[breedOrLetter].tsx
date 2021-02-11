@@ -53,11 +53,17 @@ export default function BreedOrLetter() {
                 <main className={styles.main}>
                     <div className={styles.alphabetContainer}>
                         {
-                            alphabetArray.map((letter, index) => (
-                                <a className={styles.alphabetLink} href={`/${letter}`} key={index}>
-                                    {letter.toUpperCase()}
-                                </a>
-                            ))
+                            alphabetArray.map((letter, index) => {
+                                let aTagStyling = '';
+                                if (typeof breedOrLetter === "string") {
+                                    aTagStyling = letter.toLowerCase() === breedOrLetter.toLowerCase() ? styles.alphabetLinkActive : styles.alphabetLink;
+                                }
+                                return (
+                                    <a className={aTagStyling} href={`/${letter}`} key={index}>
+                                        {letter.toUpperCase()}
+                                    </a>
+                                )
+                            })
                         }
                     </div>
 

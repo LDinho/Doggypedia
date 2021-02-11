@@ -73,9 +73,9 @@ export default function DogImage({ urlPath, dogUrl, labelText, alt }:Props) {
                 >
 
                 <div className={styles.svgContainer}>
-                    <Heart fill={ isLiked ? 'red': '#d6d0d0' }
+                    <Heart fill={ isLiked ? 'red': '#fff' }
                            stroke='#272727'
-                           stroke-width='3px'
+                           strokeWidth='3px'
                     />
                 </div>
                 </button>

@@ -108,18 +108,28 @@
 @media (max-width: 767px) {
   .alphabetContainer {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-items: center;
   }
 }
 
 .alphabetContainer a:hover {
-  text-decoration: underline;
-
+  color: black;
+  border-bottom: 1px solid #6d6d6d;
+  background: #e8e8e8;
 }
 
 .alphabetLink {
   padding: 10px;
+  border-bottom: 1px solid #fff;
+
+}
+
+.alphabetLinkActive {
+  color: black;
+  padding: 10px;
+  border-bottom: 1px solid #6d6d6d;
+  background: #e8e8e8;
 }
 
 .imageGalleryContainer {
