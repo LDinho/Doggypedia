@@ -55,11 +55,17 @@
 
 }
 
+.dogImageContainer {
+  position: relative;
+}
+
 .likeButton {
   background: none;
   border: none;
   cursor: pointer;
-
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
 
 .svgContainer {

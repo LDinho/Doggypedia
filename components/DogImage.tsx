@@ -45,7 +45,7 @@ export default function DogImage({ urlPath, dogUrl, labelText, alt }:Props) {
     }, []);
 
     return (
-            <div>
+            <div className={styles.dogImageContainer}>
                 <MaybeLink urlPath={urlPath}>
                     <div className={styles.imageWrapper}>
                         <Image
@@ -72,7 +72,12 @@ export default function DogImage({ urlPath, dogUrl, labelText, alt }:Props) {
                         }}
                 >
 
-                <div className={styles.svgContainer}> <Heart fill={ isLiked ? 'red': '#80808075' } /> </div>
+                <div className={styles.svgContainer}>
+                    <Heart fill={ isLiked ? 'red': '#d6d0d0' }
+                           stroke='#272727'
+                           stroke-width='3px'
+                    />
+                </div>
                 </button>
             </div>
     )
