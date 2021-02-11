@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import Header from '../components/Header';
 import Search from "../components/Search";
-import Image from 'next/image';
+import DogImage from "../components/DogImage";
 
 import styles from '../styles/Home.module.css';
 
@@ -23,7 +22,6 @@ export default function Home() {
         // getting the dog images
         const data  = await res.json();
         const dogImages = data.message;
-        // console.log('dogImages', dogImages);
         setDogs(dogImages);
 
       } catch (err) {
@@ -112,20 +110,12 @@ export default function Home() {
                   `/${subBreedAndBreedNameArray[1].toLowerCase()}/${subBreedAndBreedNameArray[0].toLowerCase()}` : `/${subBreedAndBreedNameArray[0].toLowerCase()}`;
 
               return (
-                <Link href={urlPath} key={index}>
-                  <a>
-                    <div className={styles.imageWrapper}>
-                      <Image
-                          className={styles.galleryItem}
-                          src={dogUrl}
-                          alt={`${subBreedAndBreedName} photo`}
-                          width={500}
-                          height={500}
-                      />
-                      <h2>{subBreedAndBreedName}</h2>
-                    </div>
-                  </a>
-                </Link>
+                  <DogImage key={index}
+                            urlPath={urlPath}
+                            dogUrl={dogUrl}
+                            labelText={subBreedAndBreedName}
+                            alt={`${subBreedAndBreedName} photo`}
+                  />
             )})
           }
         </section>

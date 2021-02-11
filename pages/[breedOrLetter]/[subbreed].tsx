@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Header from '../../components/Header';
 import Image from 'next/image';
 import styles from "../../styles/Home.module.css";
+import DogImage from "../../components/DogImage";
 
 const NUMOFIMAGESPERPAGE = 20;
 
@@ -64,15 +65,11 @@ export default function SubBreed() {
                             .join(" ").split(" ").join(' ');
 
                         return (
-                            <div className={styles.imageWrapper} key={index}>
-                                <Image
-                                    className={styles.galleryItem}
-                                    src={subBreedUrl}
-                                    alt={`${subBreedAndBreedName} photo`}
-                                    width={500}
-                                    height={500}
-                                />
-                            </div>
+                            <DogImage key={index}
+                                      dogUrl={subBreedUrl}
+                                      alt={`${subBreedAndBreedName} photo`}
+                            />
+
                         )})
                 }
             </section>
