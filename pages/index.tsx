@@ -81,7 +81,7 @@ export default function Home() {
 
     <div className={styles.container}>
       <Header />
-      <Search breedsArrayForSearch={breedsArrayForSearch} />
+      {/*<Search breedsArrayForSearch={breedsArrayForSearch} />*/}
 
       <main className={styles.main}>
         <div className={styles.alphabetContainer}>
