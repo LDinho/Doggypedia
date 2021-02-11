@@ -1,21 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import Image from "next/image";
-
-function MaybeLink({breed, subBreedFormattedName, children}) {
-    if (!subBreedFormattedName) {
-        return <>{children}</>
-    }
-
-    return (
-        <Link href={`/${breed}/${subBreedFormattedName.toLowerCase()}`}>
-            <a>
-                {children}
-            </a>
-        </Link>
-    )
-}
+import DogImage from "./DogImage";
 
 const NUMOFIMAGESPERPAGE = 20;
 
@@ -67,24 +52,14 @@ export default function Breed({ breed, showDivider=false }) {
                         const subBreedName = imageUrl.split('breeds')[1].split('/')[1]
                             .replace('-', " ").split(" ")[1];
                         const subBreedFormattedName = subBreedName ? subBreedName[0].toUpperCase() + subBreedName.slice(1) : '';
+                        const urlPath = subBreedFormattedName ? `/${breed}/${subBreedFormattedName.toLowerCase()}` : ''
                         return (
-                            <MaybeLink breed={breed} subBreedFormattedName={subBreedFormattedName} key={index}>
-                                <div className={styles.imageWrapper} >
-                                    <Image
-                                        className={styles.galleryItem}
-                                        src={imageUrl}
-                                        alt={`${breed} photo`}
-                                        width={500}
-                                        height={500}
-                                    />
-                                    {
-                                        subBreedFormattedName &&
-                                        (
-                                            <h2>{subBreedFormattedName}</h2>
-                                        )
-                                    }
-                                </div>
-                            </MaybeLink>
+                            <DogImage key={index}
+                                      urlPath={urlPath}
+                                      dogUrl={imageUrl}
+                                      labelText={subBreedFormattedName}
+                                      alt={`${breed} photo`}
+                            />
                         )})
                 }
             </section>

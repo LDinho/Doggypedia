@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import Header from '../components/Header';
-import Image from 'next/image';
+import Search from "../components/Search";
+import DogImage from "../components/DogImage";
 
 import styles from '../styles/Home.module.css';
 
@@ -22,7 +22,6 @@ export default function Home() {
         // getting the dog images
         const data  = await res.json();
         const dogImages = data.message;
-        // console.log('dogImages', dogImages);
         setDogs(dogImages);
 
       } catch (err) {
@@ -56,6 +55,21 @@ export default function Home() {
     return acc;
   }, []);
 
+  const breedsArrayForSearch = Object.keys(breeds).reduce((acc, breed) => {
+    const subBreeds = breeds[breed];
+    const breedCapitalized = `${breed[0].toUpperCase()}${breed.slice(1)}`;
+
+    const hasSubBreeds = subBreeds.length > 0;
+
+    if (hasSubBreeds) {
+      const subBreedsPlusBreed = subBreeds.map((subBreed) => `${subBreed[0].toUpperCase()}${subBreed.slice(1)} ${breedCapitalized}`);
+     return [...acc, breedCapitalized, ...subBreedsPlusBreed]
+    }
+
+    return [...acc, breedCapitalized];   // acc.concat(breed)
+
+  }, []);
+
   const maxNumOfImages = NUMOFIMAGESPERPAGE * pageNumber;
   const shouldShowButton = dogs.length > maxNumOfImages;
 
@@ -67,6 +81,7 @@ export default function Home() {
 
     <div className={styles.container}>
       <Header />
+      {/*<Search breedsArrayForSearch={breedsArrayForSearch} />*/}
 
       <main className={styles.main}>
         <div className={styles.alphabetContainer}>
@@ -95,20 +110,12 @@ export default function Home() {
                   `/${subBreedAndBreedNameArray[1].toLowerCase()}/${subBreedAndBreedNameArray[0].toLowerCase()}` : `/${subBreedAndBreedNameArray[0].toLowerCase()}`;
 
               return (
-                <Link href={urlPath} key={index}>
-                  <a>
-                    <div className={styles.imageWrapper}>
-                      <Image
-                          className={styles.galleryItem}
-                          src={dogUrl}
-                          alt={`${subBreedAndBreedName} photo`}
-                          width={500}
-                          height={500}
-                      />
-                      <h2>{subBreedAndBreedName}</h2>
-                    </div>
-                  </a>
-                </Link>
+                  <DogImage key={index}
+                            urlPath={urlPath}
+                            dogUrl={dogUrl}
+                            labelText={subBreedAndBreedName}
+                            alt={`${subBreedAndBreedName} photo`}
+                  />
             )})
           }
         </section>
